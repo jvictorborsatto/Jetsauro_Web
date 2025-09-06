@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jet Dino Adventure</title>
+
+  <!-- Pixel Art Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #000;
+      color: #d1aaff;
+      font-family: 'Press Start 2P', cursive;
+      text-align: center;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    header img {
+      width: 50px;
+      height: 50px;
+      margin-right: 15px;
+    }
+
+    h1 {
+      font-size: 20px;
+      color: #c77dff;
+    }
+
+    h2 {
+      margin-top: 40px;
+      color: #bb86fc;
+    }
+
+    .carousel {
+      position: relative;
+      max-width: 800px;
+      margin: 30px auto;
+      overflow: hidden;
+      border: 3px solid #bb86fc;
+      border-radius: 10px;
+    }
+
+    .slides {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .slides img {
+      width: 100%;
+      flex-shrink: 0;
+    }
+
+    .buttons {
+      margin-top: 15px;
+    }
+
+    button {
+      background-color: #bb86fc;
+      border: none;
+      padding: 10px 20px;
+      margin: 5px;
+      cursor: pointer;
+      font-family: 'Press Start 2P', cursive;
+      color: #000;
+      border-radius: 5px;
+    }
+
+    button:hover {
+      background-color: #9d4edd;
+      color: #fff;
+    }
+
+    .download {
+      margin: 40px 0;
+    }
+
+    footer {
+      margin-top: 50px;
+      font-size: 10px;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="icon.png" alt="Game Icon">
+    <h1>Jet Dino Adventure</h1>
+  </header>
+
+  <h2>🎮 Goal</h2>
+  <p>Survive as long as you can. Avoid pterosaurs and plants to survive!</p>
+
+  <h2>🕹️ Controls</h2>
+  <p><b>While running:</b> Press <span style="color:#bb86fc;">D</span> and <span style="color:#bb86fc;">A</span> to move forward and backward.</p>
+  <p><b>While flying:</b> Hold <span style="color:#bb86fc;">Spacebar</span> to activate the jet pack. Use <span style="color:#bb86fc;">W, S, A, D</span> to move.</p>
+
+  <h2>📸 Screenshots</h2>
+  <div class="carousel">
+    <div class="slides" id="slides">
+      <img src="flying_game_screen.png" alt="Flying Game Screenshot">
+      <img src="main_screen.png" alt="Main Screen">
+      <img src="restart_game_screen.png" alt="Restart Screen">
+      <img src="Running_game_screen.png" alt="Running Game Screenshot">
+    </div>
+  </div>
+  <div class="buttons">
+    <button onclick="prevSlide()">⬅ Prev</button>
+    <button onclick="nextSlide()">Next ➡</button>
+  </div>
+
+  <h2>📖 Story</h2>
+  <p>
+    This project started and ended in the first month of my undergraduate studies in Data Science at UNIVESP.
+    It began as a class activity, where I made a remix of a Scratch project.  
+    After finishing, I felt motivated to transport this idea into a coded platform (Godot 4.0).  
+    I challenged myself to complete it in three weeks, before the bimester ended.  
+    I was assisted by generative AI models such as ChatGPT and DeepSeek.
+  </p>
+
+  <h2>👨‍💻 Credits</h2>
+  <p>Game by João Victor Basolli Borsatto</p>
+  <p>Engine: Godot Engine 4.4</p>
+  <p>Assistance AI models: ChatGPT, DeepSeek</p>
+  <p>Sprites & Backgrounds: João Victor Basolli Borsatto using LibreSprite and AI-generated images</p>
+
+  <div class="download">
+    <a href="game.zip" download>
+      <button>⬇ Download Game (.zip)</button>
+    </a>
+  </div>
+
+  <footer>
+    <p>© 2025 João Victor Basolli Borsatto</p>
+  </footer>
+
+  <script>
+    let currentSlide = 0;
+    const slides = document.getElementById("slides");
+    const totalSlides = slides.children.length;
+
+    function showSlide(index) {
+      if (index >= totalSlides) currentSlide = 0;
+      else if (index < 0) currentSlide = totalSlides - 1;
+      else currentSlide = index;
+
+      slides.style.transform = `translateX(${-currentSlide * 100}%)`;
+    }
+
+    function nextSlide() {
+      showSlide(currentSlide + 1);
+    }
+
+    function prevSlide() {
+      showSlide(currentSlide - 1);
+    }
+  </script>
+</body>
+</html>
