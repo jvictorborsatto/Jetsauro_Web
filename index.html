@@ -16,29 +16,40 @@
       color: #d1aaff;
       font-family: 'Press Start 2P', cursive;
       text-align: center;
+      line-height: 1.6;
     }
 
     header {
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 20px;
+      padding: 30px;
     }
 
     header img {
-      width: 50px;
-      height: 50px;
-      margin-right: 15px;
+      width: 90px; /* 50% bigger */
+      height: 90px;
+      margin-right: 20px;
     }
 
     h1 {
-      font-size: 20px;
-      color: #c77dff;
+      font-size: 28px;
+      color: #FFD700; /* gold/yellow */
+      text-shadow: 2px 2px #9d4edd;
     }
 
     h2 {
-      margin-top: 40px;
+      margin-top: 50px;
+      margin-bottom: 20px;
+      font-size: 18px;
       color: #bb86fc;
+    }
+
+    p {
+      max-width: 800px;
+      margin: 10px auto;
+      font-size: 12px;
+      color: #e0cfff;
     }
 
     .carousel {
@@ -47,7 +58,8 @@
       margin: 30px auto;
       overflow: hidden;
       border: 3px solid #bb86fc;
-      border-radius: 10px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px #bb86fc88;
     }
 
     .slides {
@@ -65,27 +77,30 @@
     }
 
     button {
-      background-color: #bb86fc;
+      background-color: #FFD700;
       border: none;
-      padding: 10px 20px;
+      padding: 12px 24px;
       margin: 5px;
       cursor: pointer;
       font-family: 'Press Start 2P', cursive;
       color: #000;
-      border-radius: 5px;
+      border-radius: 6px;
+      font-size: 12px;
+      transition: all 0.2s ease;
     }
 
     button:hover {
       background-color: #9d4edd;
       color: #fff;
+      transform: scale(1.05);
     }
 
     .download {
-      margin: 40px 0;
+      margin: 50px 0;
     }
 
     footer {
-      margin-top: 50px;
+      margin-top: 60px;
       font-size: 10px;
       color: #888;
     }
@@ -98,11 +113,11 @@
   </header>
 
   <h2>🎮 Goal</h2>
-  <p>Survive as long as you can. Avoid pterosaurs and plants to survive!</p>
+  <p>Survive as long as you can. Avoid pterosaurs and plants to stay alive!</p>
 
   <h2>🕹️ Controls</h2>
-  <p><b>While running:</b> Press <span style="color:#bb86fc;">D</span> and <span style="color:#bb86fc;">A</span> to move forward and backward.</p>
-  <p><b>While flying:</b> Hold <span style="color:#bb86fc;">Spacebar</span> to activate the jet pack. Use <span style="color:#bb86fc;">W, S, A, D</span> to move.</p>
+  <p><b>While running:</b> Use <span style="color:#FFD700;">D</span> and <span style="color:#FFD700;">A</span> to move forward and backward.</p>
+  <p><b>While flying:</b> Hold <span style="color:#FFD700;">Spacebar</span> to activate the jet pack. Use <span style="color:#FFD700;">W, S, A, D</span> to control movement.</p>
 
   <h2>📸 Screenshots</h2>
   <div class="carousel">
@@ -120,25 +135,23 @@
 
   <h2>📖 Story</h2>
   <p>
-    This project started and ended in the first month of my undergraduate studies in Data Science at UNIVESP.
-    It began as a class activity, where I made a remix of a Scratch project.  
-    After finishing, I felt motivated to transport this idea into a coded platform (Godot 4.0).  
-    I challenged myself to complete it in three weeks, before the bimester ended.  
-    I was assisted by generative AI models such as ChatGPT and DeepSeek.
+    This project began in the first month of my undergraduate studies in Data Science at UNIVESP.  
+    It started as a class activity, where I remixed a Scratch project.  
+    Later, I challenged myself to rebuild the concept in Godot Engine 4.0 within just three weeks, before the bimester ended.  
+    Throughout the process, I had assistance from generative AI models such as ChatGPT and DeepSeek, while creating my own sprites with LibreSprite and AI-generated assets.
   </p>
 
   <h2>👨‍💻 Credits</h2>
-  <p>Game by João Victor Basolli Borsatto</p>
-  <p>Engine: Godot Engine 4.4</p>
-  <p>Assistance AI models: ChatGPT, DeepSeek</p>
+  <p>Game by <span style="color:#FFD700;">João Victor Basolli Borsatto</span></p>
+  <p>Engine: <span style="color:#FFD700;">Godot Engine 4.4</span></p>
+  <p>Assistance: <span style="color:#FFD700;">ChatGPT, DeepSeek</span></p>
   <p>Sprites & Backgrounds: João Victor Basolli Borsatto using LibreSprite and AI-generated images</p>
 
- <div class="download">
-  <a href="https://github.com/jvictorborsatto/Jetsauro_Web/releases/download/Jetsauro_Game/game.zip" download>
-    <button>⬇ Download Game (.zip)</button>
-  </a>
-</div>
-
+  <div class="download">
+    <a href="https://github.com/jvictorborsatto/Jetsauro_Web/releases/download/Jetsauro_Game/game.zip" download>
+      <button>⬇ Download Game (.zip)</button>
+    </a>
+  </div>
 
   <footer>
     <p>© 2025 João Victor Basolli Borsatto</p>
