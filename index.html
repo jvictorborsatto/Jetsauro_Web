@@ -412,7 +412,7 @@
         <h2><i class="fas fa-camera"></i> The Game</h2>
         <div class="carousel-section">
           <div class="carousel">
-            <div class="slides" id="slides">
+            <div class="slides" id="enSlides">
               <img src="flying_game_screen.png" alt="Flying Game Screenshot">
               <img src="main_screen.png" alt="Main Screen">
               <img src="restart_game_screen.png" alt="Restart Screen">
@@ -420,16 +420,16 @@
             </div>
           </div>
           
-          <div class="progress-bar" id="progressBar">
-            <span class="progress-dot active" onclick="goToSlide(0)"></span>
-            <span class="progress-dot" onclick="goToSlide(1)"></span>
-            <span class="progress-dot" onclick="goToSlide(2)"></span>
-            <span class="progress-dot" onclick="goToSlide(3)"></span>
+          <div class="progress-bar" id="enProgressBar">
+            <span class="progress-dot active" onclick="goToSlide(0, 'en')"></span>
+            <span class="progress-dot" onclick="goToSlide(1, 'en')"></span>
+            <span class="progress-dot" onclick="goToSlide(2, 'en')"></span>
+            <span class="progress-dot" onclick="goToSlide(3, 'en')"></span>
           </div>
 
           <div class="carousel-buttons">
-            <button class="carousel-btn" onclick="prevSlide()"><i class="fas fa-arrow-left"></i> PREV</button>
-            <button class="carousel-btn" onclick="nextSlide()">NEXT <i class="fas fa-arrow-right"></i></button>
+            <button class="carousel-btn" onclick="prevSlide('en')"><i class="fas fa-arrow-left"></i> PREV</button>
+            <button class="carousel-btn" onclick="nextSlide('en')">NEXT <i class="fas fa-arrow-right"></i></button>
           </div>
 
           <div class="download-btn">
@@ -482,7 +482,7 @@
         <h2><i class="fas fa-camera"></i> O Jogo</h2>
         <div class="carousel-section">
           <div class="carousel">
-            <div class="slides" id="slides">
+            <div class="slides" id="ptSlides">
               <img src="flying_game_screen.png" alt="Captura de Tela do Jogo Voando">
               <img src="main_screen.png" alt="Tela Principal">
               <img src="restart_game_screen.png" alt="Tela de Reinício">
@@ -490,16 +490,16 @@
             </div>
           </div>
           
-          <div class="progress-bar" id="progressBar">
-            <span class="progress-dot active" onclick="goToSlide(0)"></span>
-            <span class="progress-dot" onclick="goToSlide(1)"></span>
-            <span class="progress-dot" onclick="goToSlide(2)"></span>
-            <span class="progress-dot" onclick="goToSlide(3)"></span>
+          <div class="progress-bar" id="ptProgressBar">
+            <span class="progress-dot active" onclick="goToSlide(0, 'pt')"></span>
+            <span class="progress-dot" onclick="goToSlide(1, 'pt')"></span>
+            <span class="progress-dot" onclick="goToSlide(2, 'pt')"></span>
+            <span class="progress-dot" onclick="goToSlide(3, 'pt')"></span>
           </div>
 
           <div class="carousel-buttons">
-            <button class="carousel-btn" onclick="prevSlide()"><i class="fas fa-arrow-left"></i> ANTERIOR</button>
-            <button class="carousel-btn" onclick="nextSlide()">PRÓXIMO <i class="fas fa-arrow-right"></i></button>
+            <button class="carousel-btn" onclick="prevSlide('pt')"><i class="fas fa-arrow-left"></i> ANTERIOR</button>
+            <button class="carousel-btn" onclick="nextSlide('pt')">PRÓXIMO <i class="fas fa-arrow-right"></i></button>
           </div>
 
           <div class="download-btn">
@@ -529,31 +529,42 @@
   <footer>
     <div id="enFooter">
       <p>© 2025 João Victor Basolli Borsatto - All rights reserved</p>
-      <p style="margin-top:10px; font-size:8px;">Made with <i class="fas fa-heart" style="color:#ff6b6b;"></i> in Brazil</p>
     </div>
     <div id="ptFooter" style="display: none;">
       <p>© 2025 João Victor Basolli Borsatto - Todos os direitos reservados</p>
-      <p style="margin-top:10px; font-size:8px;">Feito com <i class="fas fa-heart" style="color:#ff6b6b;"></i> no Brasil</p>
     </div>
   </footer>
 
   <script>
-    let currentSlide = 0;
-    const slides = document.getElementById("slides");
-    const totalSlides = slides.children.length;
-    const progressDots = document.querySelectorAll('.progress-dot');
+    // Objetos para controlar os slides de cada idioma
+    const carousels = {
+      en: {
+        currentSlide: 0,
+        slides: document.getElementById('enSlides'),
+        progressDots: document.querySelectorAll('#enProgressBar .progress-dot'),
+        totalSlides: document.getElementById('enSlides').children.length
+      },
+      pt: {
+        currentSlide: 0,
+        slides: document.getElementById('ptSlides'),
+        progressDots: document.querySelectorAll('#ptProgressBar .progress-dot'),
+        totalSlides: document.getElementById('ptSlides').children.length
+      }
+    };
 
-    // Carousel functions
-    function showSlide(index) {
-      if (index >= totalSlides) currentSlide = 0;
-      else if (index < 0) currentSlide = totalSlides - 1;
-      else currentSlide = index;
+    // Função para mostrar o slide atual
+    function showSlide(lang, index) {
+      const carousel = carousels[lang];
+      
+      if (index >= carousel.totalSlides) carousel.currentSlide = 0;
+      else if (index < 0) carousel.currentSlide = carousel.totalSlides - 1;
+      else carousel.currentSlide = index;
 
-      slides.style.transform = `translateX(${-currentSlide * 100}%)`;
+      carousel.slides.style.transform = `translateX(${-carousel.currentSlide * 100}%)`;
       
       // Update progress dots
-      progressDots.forEach((dot, i) => {
-        if (i === currentSlide) {
+      carousel.progressDots.forEach((dot, i) => {
+        if (i === carousel.currentSlide) {
           dot.classList.add('active');
         } else {
           dot.classList.remove('active');
@@ -561,16 +572,18 @@
       });
     }
 
-    function nextSlide() {
-      showSlide(currentSlide + 1);
+    function nextSlide(lang) {
+      const carousel = carousels[lang];
+      showSlide(lang, carousel.currentSlide + 1);
     }
 
-    function prevSlide() {
-      showSlide(currentSlide - 1);
+    function prevSlide(lang) {
+      const carousel = carousels[lang];
+      showSlide(lang, carousel.currentSlide - 1);
     }
 
-    function goToSlide(index) {
-      showSlide(index);
+    function goToSlide(index, lang) {
+      showSlide(lang, index);
     }
 
     // Language switching function
@@ -590,21 +603,31 @@
         document.getElementById('enContent').classList.add('active');
         document.getElementById('enFooter').style.display = 'block';
         document.getElementById('gameTitle').textContent = 'JETSAURO ADVENTURE';
+        
+        // Reset para o primeiro slide
+        showSlide('en', 0);
       } else {
         document.getElementById('langPtBtn').classList.add('active');
         document.getElementById('ptContent').classList.add('active');
         document.getElementById('ptFooter').style.display = 'block';
         document.getElementById('gameTitle').textContent = 'JETSAURO AVENTURA';
+        
+        // Reset para o primeiro slide
+        showSlide('pt', 0);
       }
     }
 
-    // Auto advance carousel every 5 seconds
-    setInterval(nextSlide, 5000);
+    // Auto advance carousel apenas para o idioma ativo a cada 5 segundos
+    setInterval(() => {
+      const activeLang = document.getElementById('enContent').classList.contains('active') ? 'en' : 'pt';
+      nextSlide(activeLang);
+    }, 5000);
 
     // Keyboard navigation
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowLeft') prevSlide();
-      if (e.key === 'ArrowRight') nextSlide();
+      const activeLang = document.getElementById('enContent').classList.contains('active') ? 'en' : 'pt';
+      if (e.key === 'ArrowLeft') prevSlide(activeLang);
+      if (e.key === 'ArrowRight') nextSlide(activeLang);
     });
 
     // Initialize with English
